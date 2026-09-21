@@ -1,21 +1,15 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 
-/**
- * Clase Usuario
- * Corresponde a la clase "usuario" del diagrama de clases y a la
- * tabla "usuarios" del diagrama de base de datos.
- */
 class Usuario {
     protected $conn;
     protected $table_name = "usuarios";
 
-    // Atributos del diagrama de clases
     public $id;
     public $nombre;
-    public $email;       // columna "correo"
-    public $contrasena;  // columna "password"
-    public $usuario;     // alias de nombre de usuario (correo)
+    public $email;      
+    public $contrasena;  
+    public $usuario;    
     public $cargo;
     public $rol_id;
     public $activo;
@@ -24,8 +18,6 @@ class Usuario {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
-
-    // ---------- Métodos del diagrama de clases ----------
 
     public function iniciarSesion($correo, $password) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE correo = :correo AND password = :password AND activo = 1 LIMIT 1";
@@ -40,7 +32,6 @@ class Usuario {
     }
 
     public function cerrarSeccion() {
-        // En una app web esto normalmente destruye la sesión ($_SESSION).
         if (session_status() === PHP_SESSION_ACTIVE) {
             session_unset();
             session_destroy();
@@ -60,7 +51,6 @@ class Usuario {
         return $stmt->execute([':id' => $this->id]);
     }
 
-    // ---------- CRUD de soporte (persistencia) ----------
 
     public function leer() {
         $query = "SELECT u.*, r.nombre AS rol_nombre FROM " . $this->table_name . " u

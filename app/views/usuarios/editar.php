@@ -30,13 +30,13 @@ if (!$usuario || !$usuario['id']) {
     <div class="users-form">
         <form action="editar.php" method="POST">
             <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
-            <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required>
-            <input type="email" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
-            <input type="password" name="password" value="<?= htmlspecialchars($usuario['password']) ?>" required>
-            <input type="text" name="cargo" value="<?= htmlspecialchars($usuario['cargo'] ?? '') ?>" placeholder="Cargo">
+            <input type="text" name="nombre" value="<?= ($usuario['nombre']) ?>" required>
+            <input type="email" name="correo" value="<?= ($usuario['correo']) ?>" required>
+            <input type="password" name="password" value="<?= ($usuario['password']) ?>" required>
+            <input type="text" name="cargo" value="<?= ($usuario['cargo'] ?? '') ?>" placeholder="Cargo">
             <select name="rol_id" required>
                 <?php foreach ($roles as $r): ?>
-                    <option value="<?= $r['id'] ?>" <?= $usuario['rol_id'] == $r['id'] ? 'selected' : '' ?>><?= htmlspecialchars($r['nombre']) ?></option>
+                    <option value="<?= $r['id'] ?>" <?= $usuario['rol_id'] == $r['id'] ? 'selected' : '' ?>><?= ($r['nombre']) ?></option>
                 <?php endforeach; ?>
             </select>
             <input type="submit" value="Actualizar">

@@ -53,10 +53,10 @@ $clientes = $controller->index();
                     <?php foreach ($clientes as $c): ?>
                         <tr>
                             <td><?= $c['id'] ?></td>
-                            <td><?= htmlspecialchars($c['nombre']) ?></td>
-                            <td><?= htmlspecialchars($c['telefono'] ?? '') ?></td>
-                            <td><?= htmlspecialchars($c['direccion'] ?? '') ?></td>
-                            <td><?= htmlspecialchars($c['registro_unico']) ?></td>
+                            <td><?= ($c['nombre']) ?></td>
+                            <td><?= ($c['telefono'] ?? '') ?></td>
+                            <td><?= ($c['direccion'] ?? '') ?></td>
+                            <td><?= ($c['registro_unico']) ?></td>
                             <td>
                                 <a href="editar.php?id=<?= $c['id'] ?>" class="users-table--edit">Editar</a>
                                 <a href="eliminar.php?id=<?= $c['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este cliente?')">Eliminar</a>

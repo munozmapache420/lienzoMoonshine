@@ -60,10 +60,10 @@ $roles = $controller->roles();
                     <?php foreach ($usuarios as $u): ?>
                         <tr>
                             <td><?= $u['id'] ?></td>
-                            <td><?= htmlspecialchars($u['nombre']) ?></td>
-                            <td><?= htmlspecialchars($u['correo']) ?></td>
-                            <td><?= htmlspecialchars($u['cargo'] ?? '') ?></td>
-                            <td><?= htmlspecialchars($u['rol_nombre'] ?? '') ?></td>
+                            <td><?= ($u['nombre']) ?></td>
+                            <td><?= ($u['correo']) ?></td>
+                            <td><?= ($u['cargo'] ?? '') ?></td>
+                            <td><?= ($u['rol_nombre'] ?? '') ?></td>
                             <td>
                                 <a href="../app/views/usuarios/editar.php?id=<?= $u['id'] ?>" class="users-table--edit">Editar</a>
                                 <a href="../app/views/usuarios/eliminar.php?id=<?= $u['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>

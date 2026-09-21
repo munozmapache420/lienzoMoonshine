@@ -32,7 +32,7 @@ $clientes = $controller->clientes();
             <select name="cliente_id" id="cliente_id">
                 <option value="">-- Sin cliente --</option>
                 <?php foreach ($clientes as $c): ?>
-                    <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
+                    <option value="<?= $c['id'] ?>"><?= ($c['nombre']) ?></option>
                 <?php endforeach; ?>
             </select>
 
@@ -40,7 +40,7 @@ $clientes = $controller->clientes();
             <select name="producto_id" id="producto_id" required>
                 <?php foreach ($productos as $p): ?>
                     <option value="<?= $p['id'] ?>">
-                        <?= htmlspecialchars($p['nombre']) ?> — $<?= number_format((float)$p['precio_venta'], 2) ?> (stock: <?= $p['stock'] ?>)
+                        <?= ($p['nombre']) ?> — $<?= number_format((float)$p['precio_venta'], 2) ?> (stock: <?= $p['stock'] ?>)
                     </option>
                 <?php endforeach; ?>
             </select>

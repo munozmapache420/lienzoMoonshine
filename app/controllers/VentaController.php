@@ -29,11 +29,6 @@ class VentaController {
         return (new DetalleVenta())->leerPorVenta($ventaId);
     }
 
-    /**
-     * Registra una venta completa: cabecera + detalle + método de pago.
-     * $datos = ['cliente_id'=>, 'usuario_id'=>, 'metodo_pago'=>,
-     *           'productos' => [['id'=>, 'cantidad'=>], ...]]
-     */
     public function registrarVentaCompleta($datos) {
         $conn = $this->venta->conn;
         try {

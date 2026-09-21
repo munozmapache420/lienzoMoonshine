@@ -37,7 +37,7 @@ $categorias = $controller->categorias();
             <label for="categoria_id">Categoría:</label>
             <select id="categoria_id" name="categoria_id" required>
                 <?php foreach ($categorias as $c): ?>
-                    <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nombre']) ?></option>
+                    <option value="<?= $c['id'] ?>"><?= ($c['nombre']) ?></option>
                 <?php endforeach; ?>
             </select>
 
@@ -91,7 +91,7 @@ $categorias = $controller->categorias();
                             <td>$<?= number_format((float)$p['precio_venta'], 2) ?></td>
                             <td><?= $p['stock'] ?></td>
                             <td><?= $p['stock_minimo'] ?></td>
-                            <td><?= htmlspecialchars($p['estado']) ?></td>
+                            <td><?= ($p['estado']) ?></td>
                             <td>
                                 <a href="editar.php?id=<?= $p['id'] ?>" class="users-table--edit">Editar</a>
                                 <a href="eliminar.php?id=<?= $p['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>

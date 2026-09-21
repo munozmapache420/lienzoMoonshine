@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 
-/**
- * Clase Venta (diagrama de clases) / tabla "venta"
- */
 class Venta {
     public $conn;
     private $table_name = "venta";

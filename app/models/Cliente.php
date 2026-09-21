@@ -31,7 +31,6 @@ class Cliente {
     }
 
     public function registroUnico($datos) {
-        // Genera un código único de registro y crea el cliente.
         $codigo = 'CLI-' . strtoupper(uniqid());
         $query = "INSERT INTO " . $this->table_name . " (nombre, telefono, direccion, registro_unico) VALUES (:nombre, :telefono, :direccion, :codigo)";
         $stmt = $this->conn->prepare($query);

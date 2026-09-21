@@ -29,9 +29,9 @@ if (!$cliente) {
     <div class="users-form">
         <form action="editar.php" method="POST">
             <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
-            <input type="text" name="nombre" value="<?= htmlspecialchars($cliente['nombre']) ?>" required>
-            <input type="text" name="telefono" value="<?= htmlspecialchars($cliente['telefono'] ?? '') ?>">
-            <input type="text" name="direccion" value="<?= htmlspecialchars($cliente['direccion'] ?? '') ?>">
+            <input type="text" name="nombre" value="<?= ($cliente['nombre']) ?>" required>
+            <input type="text" name="telefono" value="<?= ($cliente['telefono'] ?? '') ?>">
+            <input type="text" name="direccion" value="<?= ($cliente['direccion'] ?? '') ?>">
             <input type="submit" value="Actualizar">
             <a href="index.php" style="display:inline-block; margin-top:10px;">Cancelar</a>
         </form>
