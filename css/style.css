@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 18px;
+}
+
+nav a:last-child {
+    margin-right: 0;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+.users-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+.users-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.users-form input[type="text"],
+.users-form input[type="number"],
+.users-form input[type="password"],
+.users-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.users-form input[type="submit"] {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.users-table {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.users-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.users-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.users-table--edit {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #ffc107;
+    color: #212529;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.users-table--delete {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #dc3545;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
