@@ -2,10 +2,7 @@
 require_once __DIR__ . '/Usuario.php';
 require_once __DIR__ . '/Producto.php';
 
-/**
- * Clase Administrador
- * (hereda usuario) — según el diagrama de clases.
- */
+
 class Administrador extends Usuario {
 
     public function registrarProducto($producto) {
@@ -24,7 +21,6 @@ class Administrador extends Usuario {
     }
 
     public function registrarEmpleado($empleado) {
-        // Un empleado se registra como Usuario con cargo/rol asignado
         return $this->crear($empleado);
     }
 
@@ -43,7 +39,6 @@ class Administrador extends Usuario {
     }
 
     public function configurarSistema($opciones = []) {
-        // Punto de extensión para parámetros generales del sistema.
         return true;
     }
 

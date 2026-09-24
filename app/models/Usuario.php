@@ -18,7 +18,14 @@ class Usuario {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
+    public function getAll()
+    {
+        $sql = "SELECT * FROM usuarios";
 
+        $consulta = $this->conn->query($sql);
+
+        return $consulta->fetchAll();
+    }
     public function iniciarSesion($correo, $password) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE correo = :correo AND password = :password AND activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);

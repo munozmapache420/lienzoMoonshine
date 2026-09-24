@@ -1,10 +1,13 @@
 <?php
 require_once __DIR__ . '/../../controllers/ProductoController.php';
+require_once __DIR__ . '/../../models/Producto.php';
+
 
 $controller = new ProductoController();
 $productos = $controller->index();
 $categorias = $controller->categorias();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,8 +88,8 @@ $categorias = $controller->categorias();
                     <?php foreach ($productos as $p): ?>
                         <tr>
                             <td><?= $p['id'] ?></td>
-                            <td><?= htmlspecialchars($p['nombre']) ?></td>
-                            <td><?= htmlspecialchars($p['categoria_nombre'] ?? '') ?></td>
+                            <td><?= ($p['nombre']) ?></td>
+                            <td><?= ($p['categoria_nombre'] ?? '') ?></td>
                             <td>$<?= number_format((float)$p['precio_compra'], 2) ?></td>
                             <td>$<?= number_format((float)$p['precio_venta'], 2) ?></td>
                             <td><?= $p['stock'] ?></td>

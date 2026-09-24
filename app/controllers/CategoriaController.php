@@ -8,9 +8,11 @@ class CategoriaController {
         $this->categoria = new Categoria();
     }
 
-    public function index() {
-        return $this->categoria->leer();
-    }
+public function index()
+{
+    $categorias = $this->categoria->getAll();
+    require_once __DIR__ . '/../views/categorias/index.php';
+}
 
     public function crear($datos) {
         try {

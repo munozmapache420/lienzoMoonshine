@@ -78,8 +78,8 @@ $clientes = $controller->clientes();
                     <?php foreach ($ventas as $v): ?>
                         <tr>
                             <td><?= $v['id'] ?></td>
-                            <td><?= htmlspecialchars($v['cliente_nombre'] ?? 'Sin cliente') ?></td>
-                            <td><?= htmlspecialchars($v['usuario_nombre'] ?? '') ?></td>
+                            <td><?= ($v['cliente_nombre'] ?? 'Sin cliente') ?></td>
+                            <td><?= ($v['usuario_nombre'] ?? '') ?></td>
                             <td><?= $v['fecha'] ?></td>
                             <td>$<?= number_format((float)$v['total'], 2) ?></td>
                             <td><?= $v['anulada'] ? 'Anulada' : 'Activa' ?></td>

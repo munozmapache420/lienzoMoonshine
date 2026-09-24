@@ -8,9 +8,14 @@ class ClienteController {
         $this->cliente = new Cliente();
     }
 
-    public function index() {
-        return $this->cliente->leer();
-    }
+public function index()
+{
+    $cliente = $this->cliente->getAll();
+
+    require_once __DIR__ . '/../views/clientes/index.php';
+}
+
+
 
     public function crear($datos) {
         try {

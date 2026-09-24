@@ -9,8 +9,13 @@ class UsuarioController {
     }
 
     public function index() {
-        return $this->usuario->leer();
-    }
+          $usuarios = $this->usuario->getAll();
+
+    require_once __DIR__ . '/../views/usuarios/crear.php';
+    require_once __DIR__ . '/../views/usuarios/editar.php';
+    require_once __DIR__ . '/../views/usuarios/eliminar.php';
+}
+    
 
     public function obtenerPorId($id) {
         $this->usuario->leerUno($id);

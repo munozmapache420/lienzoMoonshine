@@ -9,9 +9,13 @@ class ProductoController {
         $this->producto = new Producto();
     }
 
-    public function index() {
-        return $this->producto->leer();
-    }
+public function index()
+{
+    $producto = $this->producto->getAll();
+
+    require_once __DIR__ . '/../views/productos/index.php';
+}
+
 
     public function categorias() {
         $categoria = new Categoria();

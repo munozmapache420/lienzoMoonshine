@@ -9,7 +9,7 @@ class MetodoPago {
     private $table_name = "metodo_pago";
 
     public $idMetodoPago;
-    public $tipo; // Efectivo, Transferencia, Tarjeta
+    public $tipo;
     public $total;
     public $fecha;
     public $venta_id;

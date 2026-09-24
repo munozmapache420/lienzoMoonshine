@@ -19,6 +19,17 @@ class Cliente {
         $this->conn = $database->getConnection();
     }
 
+     public function getAll()
+    {
+        $sql = "SELECT * FROM clientes";
+
+        $consulta = $this->conn->query($sql);
+
+        return $consulta->fetchAll();
+    }
+
+
+    
     public function ActualizarDatos($id, $datos) {
         $query = "UPDATE " . $this->table_name . " SET nombre = :nombre, telefono = :telefono, direccion = :direccion WHERE id = :id";
         $stmt = $this->conn->prepare($query);

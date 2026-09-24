@@ -1,10 +1,9 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
 
-/**
- * Clase Categoria (diagrama de clases) / tabla "categorias"
- */
-class Categoria {
+
+class Categoria
+{
     private $conn;
     private $table_name = "categorias";
 
@@ -13,16 +12,27 @@ class Categoria {
     public $descripcion;
     public $precio;
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
+    public function getAll()
+    {
+        $sql = "SELECT * FROM categorias";
 
-    public function idcategoria() {
+        $consulta = $this->conn->query($sql);
+
+        return $consulta->fetchAll();
+    }
+
+    public function idcategoria()
+    {
         return $this->id;
     }
 
-    public function crearCategoria($datos) {
+    public function crearCategoria($datos)
+    {
         $query = "INSERT INTO " . $this->table_name . " (nombre, descripcion, precio) VALUES (:nombre, :descripcion, :precio)";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([
@@ -32,7 +42,8 @@ class Categoria {
         ]);
     }
 
-    public function actualizarCategoria($id, $datos) {
+    public function actualizarCategoria($id, $datos)
+    {
         $query = "UPDATE " . $this->table_name . " SET nombre = :nombre, descripcion = :descripcion, precio = :precio WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([
@@ -43,19 +54,22 @@ class Categoria {
         ]);
     }
 
-    public function leer() {
+    public function leer()
+    {
         $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name . " ORDER BY nombre");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function leerUno($id) {
+    public function leerUno($id)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name . " WHERE id = :id LIMIT 1");
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function eliminar($id) {
+    public function eliminar($id)
+    {
         $stmt = $this->conn->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
