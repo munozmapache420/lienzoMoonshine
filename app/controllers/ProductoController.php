@@ -3,19 +3,16 @@ require_once __DIR__ . '/../models/Producto.php';
 require_once __DIR__ . '/../models/Categoria.php';
 
 class ProductoController {
-    private $producto;
+    public $producto;
 
     public function __construct() {
         $this->producto = new Producto();
     }
 
-public function index()
-{
-    $producto = $this->producto->getAll();
-
-    require_once __DIR__ . '/../views/productos/index.php';
-}
-
+    public function index() {
+        $productos = $this->producto->getAll();   
+        require_once __DIR__ . '/../views/productos/index.php';
+    }
 
     public function categorias() {
         $categoria = new Categoria();

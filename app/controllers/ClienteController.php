@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Cliente.php';
 
 class ClienteController {
-    private $cliente;
+    public $cliente;
 
     public function __construct() {
         $this->cliente = new Cliente();
@@ -11,7 +11,6 @@ class ClienteController {
 public function index()
 {
     $cliente = $this->cliente->getAll();
-
     require_once __DIR__ . '/../views/clientes/index.php';
 }
 

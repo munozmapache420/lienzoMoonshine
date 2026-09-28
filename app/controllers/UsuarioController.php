@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Usuario.php';
 
 class UsuarioController {
-    private $usuario;
+    public Usuario $usuario;
 
     public function __construct() {
         $this->usuario = new Usuario();

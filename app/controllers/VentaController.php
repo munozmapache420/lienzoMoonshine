@@ -7,14 +7,16 @@ require_once __DIR__ . '/../models/Cliente.php';
 require_once __DIR__ . '/../models/Usuario.php';
 
 class VentaController {
-    private $venta;
+    public $venta;
 
     public function __construct() {
         $this->venta = new Venta();
     }
 
+
     public function index() {
-        return $this->venta->leer();
+    $ventas = $this->venta->getAll();
+    require_once __DIR__ . '/../views/ventas/index.php';
     }
 
     public function productos() {

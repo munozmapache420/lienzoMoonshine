@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Categoria.php';
 
 class CategoriaController {
-    private $categoria;
+    public $categoria;
 
     public function __construct() {
         $this->categoria = new Categoria();

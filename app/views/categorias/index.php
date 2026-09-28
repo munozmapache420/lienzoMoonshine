@@ -36,6 +36,7 @@ $categorias = $controller->index();
 
     <h2>Categorías Registradas</h2>
 
+
     <div class="users-table">
         <table>
             <thead>
@@ -52,8 +53,8 @@ $categorias = $controller->index();
                     <?php foreach ($categorias as $c): ?>
                         <tr>
                             <td><?= $c['id'] ?></td>
-                            <td><?= htmlspecialchars($c['nombre']) ?></td>
-                            <td><?= htmlspecialchars($c['descripcion'] ?? '') ?></td>
+                            <td><?= ($c['nombre']) ?></td>
+                            <td><?= ($c['descripcion'] ?? '') ?></td>
                             <td>$<?= number_format((float)$c['precio'], 2) ?></td>
                             <td>
                                 <a href="editar.php?id=<?= $c['id'] ?>" class="users-table--edit">Editar</a>
@@ -67,6 +68,7 @@ $categorias = $controller->index();
             </tbody>
         </table>
     </div>
+    
 
 </body>
 </html>

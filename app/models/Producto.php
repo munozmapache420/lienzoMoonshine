@@ -3,8 +3,8 @@ require_once __DIR__ . '/../../config/database.php';
 
 class Producto
 {
-    private $conn;
-    private $table_name = "producto";
+    public $conn;
+    public $table_name = "producto";
 
     public $id;
     public $nombre;
@@ -21,6 +21,12 @@ class Producto
         $database = new Database();
         $this->conn = $database->getConnection();
     }
+    
+public function getAll() {
+    $sql = "SELECT * FROM producto";
+    $consulta= $this->conn->query($sql);
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function aumentarStock($cantidad)
     {
@@ -58,7 +64,6 @@ class Producto
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return (int)$row['total'];
     }
-
 
     public function leer()
     {
@@ -123,9 +128,5 @@ class Producto
         return $stmt->execute([':id' => $id]);
     }
 
-    public function getAll()
-    {
-        $sql = "SELECT * FROM producto";
-        $consulta = $this->conn->query($sql);
-    }
+
 }

@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../../config/database.php';
 
 class Usuario {
-    protected $conn;
-    protected $table_name = "usuarios";
+    public $conn;
+    public $table_name = "usuarios";
 
     public $id;
     public $nombre;
@@ -18,14 +18,15 @@ class Usuario {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
-    public function getAll()
-    {
-        $sql = "SELECT * FROM usuarios";
 
-        $consulta = $this->conn->query($sql);
+ public function getAll()
+{
+    $sql = "SELECT * FROM usuarios";
 
-        return $consulta->fetchAll();
-    }
+    $stmt = $this->conn->query($sql);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
     public function iniciarSesion($correo, $password) {
         $query = "SELECT * FROM " . $this->table_name . " WHERE correo = :correo AND password = :password AND activo = 1 LIMIT 1";
         $stmt = $this->conn->prepare($query);

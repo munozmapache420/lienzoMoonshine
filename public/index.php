@@ -51,6 +51,7 @@ if ($method === 'GET' && $uri === '/clientes') {
 <a href="/usuarios">usuarios</a>
 <a href="/categorias">categorias</a>
 <a href="/clientes">clientes</a>
+<a href="/ventas">ventas</a>
 
  <!-- <!DOCTYPE html>
 <html lang="es">

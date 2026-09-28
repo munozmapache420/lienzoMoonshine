@@ -4,8 +4,8 @@ require_once __DIR__ . '/../../config/database.php';
 
 class Categoria
 {
-    private $conn;
-    private $table_name = "categorias";
+    public $conn;
+    public $table_name = "categorias";
 
     public $id;
     public $nombre;

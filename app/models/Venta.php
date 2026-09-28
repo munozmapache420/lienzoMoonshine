@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../config/database.php';
 
 class Venta {
     public $conn;
-    private $table_name = "venta";
+    public $table_name = "venta";
 
     public $id;
     public $fecha;
@@ -14,6 +14,12 @@ class Venta {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConnection();
+    }
+
+    public function getAll() {
+        $sql = "SELECT * FROM venta";
+        $consulta = $this->conn->query($sql);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function calcularTotal() {

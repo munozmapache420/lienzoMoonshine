@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../config/database.php';
  * Clase Cliente (diagrama de clases) / tabla "clientes"
  */
 class Cliente {
-    private $conn;
-    private $table_name = "clientes";
+    public $conn;
+    public $table_name = "clientes";
 
     public $id;
     public $nombre;
@@ -22,9 +22,7 @@ class Cliente {
      public function getAll()
     {
         $sql = "SELECT * FROM clientes";
-
         $consulta = $this->conn->query($sql);
-
         return $consulta->fetchAll();
     }
 
