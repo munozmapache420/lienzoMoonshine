@@ -14,32 +14,37 @@ class ProductoController {
         require_once __DIR__ . '/../views/productos/index.php';
     }
 
-    public function categorias() {
-        $categoria = new Categoria();
-        return $categoria->leer();
+    public function crear() {
+     require_once __DIR__ . '/../views/productos/crear.php';
     }
 
-    public function crear($datos) {
-        try {
-            return $this->producto->crear($this->normalizar($datos));
-        } catch (PDOException $e) {
-            echo "<script>alert('Error detallado de MySQL: " . addslashes($e->getMessage()) . "'); window.history.back();</script>";
-            exit;
+    public function guardar() {
+    
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            $categoria_id = $_POST['categoria_id'];
+            $id_inventario = $_POST['id_inventario'];
+            $stock_minimo = $_POST['stock_minimo'];
+            $estado = $_POST['estado'];
+            $precio_compra = $_POST['precio_compra'];
+            $precio_venta = $_POST['precio_venta'];
+            $stock = $_POST['stock'];
+
+            $producto = new Producto();
+            $resultado = $producto->guardar($nombre, $descripcion, $categoria_id, $id_inventario, $precio_compra, $precio_venta, $stock, $stock_minimo, $estado);
+
+            if ($resultado) {
+                echo "producto guardado correctamente";
+                $this->index();
+            
+        } else {
+            echo "error al guardar el producto";
         }
+    
     }
 
-    public function obtenerPorId($id) {
-        return $this->producto->leerUno((int)$id);
-    }
 
-    public function actualizar($id, $datos) {
-        try {
-            return $this->producto->actualizar((int)$id, $this->normalizar($datos));
-        } catch (PDOException $e) {
-            echo "<script>alert('Error detallado de MySQL: " . addslashes($e->getMessage()) . "'); window.history.back();</script>";
-            exit;
-        }
-    }
+
 
     public function eliminar($id) {
         try {
@@ -56,16 +61,5 @@ class ProductoController {
         }
     }
 
-    private function normalizar($datos) {
-        return [
-            'nombre'        => trim($datos['nombre'] ?? ''),
-            'descripcion'   => trim($datos['descripcion'] ?? ''),
-            'categoria_id'  => (int)($datos['categoria_id'] ?? 0),
-            'stock_minimo'  => (int)($datos['stock_minimo'] ?? 0),
-            'estado'        => $datos['estado'] ?? 'activo',
-            'precio_compra' => (float)($datos['precio_compra'] ?? 0),
-            'precio_venta'  => (float)($datos['precio_venta'] ?? 0),
-            'stock'         => (int)($datos['stock'] ?? 0),
-        ];
-    }
+    
 }

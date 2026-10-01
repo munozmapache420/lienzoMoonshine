@@ -5,12 +5,6 @@ require_once __DIR__ . '/../../config/database.php';
 class Categoria
 {
     public $conn;
-    public $table_name = "categorias";
-
-    public $id;
-    public $nombre;
-    public $descripcion;
-    public $precio;
 
     public function __construct()
     {
@@ -20,20 +14,30 @@ class Categoria
     public function getAll()
     {
         $sql = "SELECT * FROM categorias";
-
         $consulta = $this->conn->query($sql);
-
-        return $consulta->fetchAll();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
+public function guardar($nombre, $descripcion, $precio)
+{
+    try {
 
-    public function idcategoria()
-    {
-        return $this->id;
+        $sql = "INSERT INTO categorias (nombre,descripcion,precio) VALUES (:nombre,:descripcion,:precio)";
+        $consulta = $this->conn->prepare($sql);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':descripcion', $descripcion);
+        $consulta->bindParam(':precio', $precio);
+
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        echo "Error CATEGORIA: " . $nombre . " ERROR SQL: " . $e->getMessage();
     }
+}
+
+
 
     public function crearCategoria($datos)
     {
-        $query = "INSERT INTO " . $this->table_name . " (nombre, descripcion, precio) VALUES (:nombre, :descripcion, :precio)";
+        $query = "INSERT INTO categorias (nombre, descripcion, precio) VALUES (:nombre, :descripcion, :precio)";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([
             ':nombre'      => $datos['nombre'],
@@ -44,7 +48,7 @@ class Categoria
 
     public function actualizarCategoria($id, $datos)
     {
-        $query = "UPDATE " . $this->table_name . " SET nombre = :nombre, descripcion = :descripcion, precio = :precio WHERE id = :id";
+        $query = "UPDATE categorias SET nombre = :nombre, descripcion = :descripcion, precio = :precio WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([
             ':id'          => $id,
@@ -54,23 +58,5 @@ class Categoria
         ]);
     }
 
-    public function leer()
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name . " ORDER BY nombre");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    public function leerUno($id)
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM " . $this->table_name . " WHERE id = :id LIMIT 1");
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function eliminar($id)
-    {
-        $stmt = $this->conn->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
-        return $stmt->execute([':id' => $id]);
-    }
 }

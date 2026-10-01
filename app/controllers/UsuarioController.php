@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Usuario.php';
 
 class UsuarioController {
-    public Usuario $usuario;
+    public $usuario;
 
     public function __construct() {
         $this->usuario = new Usuario();
@@ -11,35 +11,40 @@ class UsuarioController {
     public function index() {
           $usuarios = $this->usuario->getAll();
 
-    require_once __DIR__ . '/../views/usuarios/crear.php';
-    require_once __DIR__ . '/../views/usuarios/editar.php';
-    require_once __DIR__ . '/../views/usuarios/eliminar.php';
+    require_once __DIR__ . '/../views/usuarios/index.php';
 }
-    
+    public function guardar()
+{
+    $nombre = $_POST['nombre'];
+    $correo = $_POST['correo'];
+    $password = $_POST['password'];
+    $cargo = $_POST['cargo'];
+    $activo = $_POST['activo'];
+    $rol_id = $_POST['rol_id'];
 
-    public function obtenerPorId($id) {
-        $this->usuario->leerUno($id);
-        return [
-            'id' => $this->usuario->id,
-            'nombre' => $this->usuario->nombre,
-            'correo' => $this->usuario->email,
-            'password' => $this->usuario->contrasena,
-            'cargo' => $this->usuario->cargo,
-            'rol_id' => $this->usuario->rol_id,
-        ];
+    $usuario = new Usuario();
+    $resultado = $usuario->guardar(
+        $nombre,
+        $correo,
+        $password,
+        $cargo,
+        $activo,
+        $rol_id
+    );
+    if ($resultado) {
+        echo "usuario guardado correctamente";
+        $this->index();
+    } else {
+    echo "error al guardar el usuario";
+    }
+}
+
+
+
+    public function crear() {
+     require_once __DIR__ . '/../views/usuarios/crear.php';
     }
 
-    public function crear($datos) {
-        try {
-            return $this->usuario->crear($datos);
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                echo "<script>alert('El correo ya está registrado. Intenta con otro.'); window.history.back();</script>";
-                exit;
-            }
-            throw $e;
-        }
-    }
 
     public function actualizar($id, $datos) {
         return $this->usuario->actualizar($id, $datos);

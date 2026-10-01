@@ -14,38 +14,28 @@ public function index()
     require_once __DIR__ . '/../views/categorias/index.php';
 }
 
-    public function crear($datos) {
-        try {
-            return $this->categoria->crearCategoria($datos);
-        } catch (PDOException $e) {
-            if ($e->getMessage()) {
-                echo "<script>alert('Ya existe una categoría con ese nombre.'); window.history.back();</script>";
-                exit;
-            }
-            throw $e;
-        }
-    } 
 
-    public function obtenerPorId($id) {
-        return $this->categoria->leerUno((int)$id);
+    public function crear() {
+     require_once __DIR__ . '/../views/categorias/crear.php';
     }
 
-    public function actualizar($id, $datos) {
-        return $this->categoria->actualizarCategoria((int)$id, $datos);
-    }
+    public function guardar()
+{
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $precio = $_POST['precio'];
 
-    public function eliminar($id) {
-        try {
-            return $this->categoria->eliminar((int)$id);
-        } catch (PDOException $e) {
-            if ($e->getMessage()) {
-                echo "<script>
-                    alert('No se puede eliminar esta categoría porque tiene productos asociados.');
-                    window.location.href = 'index.php';
-                </script>";
-                exit;
-            }
-            throw $e;
-        }
+    $categoria = new Categoria();
+
+    $resultado = $categoria->guardar($nombre, $descripcion, $precio);
+    if ($resultado) {
+        echo "categoria guardada correctamente";
+        $this->index();
+    } else {
+        echo "error al guardar la categoria";
     }
+}
+
+
+
 }

@@ -45,13 +45,51 @@ if ($method === 'GET' && $uri === '/clientes') {
     $clienteController->index();
 
 }
+if ($method === 'GET' && $uri === '/productos/crear'){
+    $productoController = new productoController();
+    $productoController->crear();
+}
+
+if ($method === 'POST' && $uri === '/productos'){
+    $productoController = new productoController();
+    $productoController->guardar();
+}
+if ($method === 'GET' && $uri === '/categorias/crear'){
+    $categoriaController = new categoriaController();
+    $categoriaController->crear();
+}
+if ($method === 'POST' && $uri === '/categorias'){
+    $categoriaController = new categoriaController();
+    $categoriaController->guardar();
+}
+if ($method === 'GET' && $uri === '/usuarios/crear'){
+    $usuarioController = new UsuarioController();
+    $usuarioController->crear();
+}
+if ($method === 'POST' && $uri === '/usuarios'){
+    $usuarioController = new UsuarioController();
+    $usuarioController->guardar();
+}
 
 ?>
+
 <a href="/productos">productos</a>
+<br>
 <a href="/usuarios">usuarios</a>
+<br>
 <a href="/categorias">categorias</a>
+<br>
 <a href="/clientes">clientes</a>
+<br>
 <a href="/ventas">ventas</a>
+<br>
+<a href="/productos/crear">creacionProductoBB</a>
+<br>
+<a href="/categorias/crear">creacionCategoria</a>
+<br>
+<a href="/usuarios/crear">creacionUsuario</a>
+
+
 
  <!-- <!DOCTYPE html>
 <html lang="es">

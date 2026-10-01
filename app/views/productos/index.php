@@ -1,215 +1,47 @@
-<?php
+<!-- MENÚ -->
 
-require_once __DIR__ . '/../../controllers/ProductoController.php';
-require_once __DIR__ . '/../../models/Producto.php';
+<nav>
 
-$controller = new ProductoController();
+    <a href="../../../public/index.php">
+        Usuarios
+    </a>
 
-$productos = $controller->index();
+    <a href="index.php">
+        <strong>Productos</strong>
+    </a>
 
-?>
+    <a href="../categorias/index.php">
+        Categorías
+    </a>
 
-<!DOCTYPE html>
-<html lang="es">
+    <a href="../clientes/index.php">
+        Clientes
+    </a>
 
-<head>
+    <a href="../ventas/index.php">
+        Ventas
+    </a>
 
-    <meta charset="UTF-8">
+</nav>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gestión de Productos</title>
+<h1>Gestión de Productos</h1>
 
-    <link rel="stylesheet" href="../../../css/style.css">
 
-</head>
+<h2>Productos Registrados</h2>
 
-<body>
 
+<?php if (!empty($productos)): ?>
 
-    <!-- MENÚ -->
-
-    <nav>
-
-        <a href="../../../public/index.php">
-            Usuarios
-        </a>
-
-        <a href="index.php">
-            <strong>Productos</strong>
-        </a>
-
-        <a href="../categorias/index.php">
-            Categorías
-        </a>
-
-        <a href="../clientes/index.php">
-            Clientes
-        </a>
-
-        <a href="../ventas/index.php">
-            Ventas
-        </a>
-
-    </nav>
-
-
-    <h1>Gestión de Productos</h1>
-
-
-    <!-- FORMULARIO -->
-
-    <div class="users-form">
-
-        <form action="crear.php" method="POST">
-
-
-            <h2>Crear Producto</h2>
-
-
-            <label for="nombre">
-                Nombre del Producto:
-            </label>
-
-            <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Nombre del producto"
-                required
-            >
-
-
-            <label for="descripcion">
-                Descripción:
-            </label>
-
-            <input
-                type="text"
-                id="descripcion"
-                name="descripcion"
-                placeholder="Descripción"
-            >
-
-
-            <label for="categoria_id">
-                ID de Categoría:
-            </label>
-
-            <input
-                type="number"
-                id="categoria_id"
-                name="categoria_id"
-                placeholder="ID de categoría"
-                required
-            >
-
-
-            <label for="id_inventario">
-                ID de Inventario:
-            </label>
-
-            <input
-                type="number"
-                id="id_inventario"
-                name="id_inventario"
-                placeholder="ID del inventario"
-            >
-
-
-            <label for="precio_compra">
-                Precio de Compra:
-            </label>
-
-            <input
-                type="number"
-                step="0.01"
-                id="precio_compra"
-                name="precio_compra"
-                placeholder="Ej: 15000"
-                required
-            >
-
-
-            <label for="precio_venta">
-                Precio de Venta:
-            </label>
-
-            <input
-                type="number"
-                step="0.01"
-                id="precio_venta"
-                name="precio_venta"
-                placeholder="Ej: 25000"
-                required
-            >
-
-
-            <label for="stock">
-                Stock:
-            </label>
-
-            <input
-                type="number"
-                id="stock"
-                name="stock"
-                placeholder="Cantidad / Stock"
-                required
-            >
-
-
-            <label for="stock_minimo">
-                Stock Mínimo:
-            </label>
-
-            <input
-                type="number"
-                id="stock_minimo"
-                name="stock_minimo"
-                value="0"
-                required
-            >
-
-
-            <label for="estado">
-                Estado:
-            </label>
-
-            <select
-                id="estado"
-                name="estado"
-            >
-
-                <option value="activo">
-                    Activo
-                </option>
-
-                <option value="inactivo">
-                    Inactivo
-                </option>
-
-            </select>
-
-
-            <input
-                type="submit"
-                value="Agregar Producto"
-            >
-
-
-        </form>
-
-    </div>
-
-
-    <!-- TABLA -->
-
-    <h2>Productos Registrados</h2>
+    <p>
+        Total de productos:
+        <strong><?= count($productos) ?></strong>
+    </p>
 
 
     <div class="users-table">
 
-        <table>
+        <table border="1">
 
             <thead>
 
@@ -244,104 +76,93 @@ $productos = $controller->index();
 
             <tbody>
 
-
-                <?php if (!empty($productos)): ?>
-
-
-                    <?php foreach ($productos as $p): ?>
-
-                        <tr>
-
-                            <td>
-                                <?= $p['id'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['nombre'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['descripcion'] ?? '' ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['categoria_id'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['id_inventario'] ?? '' ?>
-                            </td>
-
-
-                            <td>
-                                $<?= $p['precio_compra'] ?>
-                            </td>
-
-
-                            <td>
-                                $<?= $p['precio_venta'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['stock'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['stock_minimo'] ?>
-                            </td>
-
-
-                            <td>
-                                <?= $p['estado'] ?>
-                            </td>
-
-
-                            <td>
-
-                                <a
-                                    href="editar.php?id=<?= $p['id'] ?>"
-                                    class="users-table--edit"
-                                >
-                                    Editar
-                                </a>
-
-
-                                <a
-                                    href="eliminar.php?id=<?= $p['id'] ?>"
-                                    class="users-table--delete"
-                                    onclick="return confirm('¿Seguro que deseas eliminar este producto?')"
-                                >
-                                    Eliminar
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-
-                    <?php endforeach; ?>
-
-
-                <?php else: ?>
-
+                <?php foreach ($productos as $p): ?>
 
                     <tr>
 
-                        <td colspan="11">
-                            No hay productos registrados.
+                        <td>
+                            <?= ($p['id']) ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['nombre']) ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['descripcion'] ?? '') ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['categoria_id']) ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['id_inventario'] ?? '') ?>
+                        </td>
+
+
+                        <td>
+                            $<?= number_format(
+                                (float)$p['precio_compra'],
+                                2,
+                                ',',
+                                '.'
+                            ) ?>
+                        </td>
+
+
+                        <td>
+                            $<?= number_format(
+                                (float)$p['precio_venta'],
+                                2,
+                                ',',
+                                '.'
+                            ) ?>
+                        </td>
+
+
+                        <td>
+                            <?=($p['stock']) ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['stock_minimo']) ?>
+                        </td>
+
+
+                        <td>
+                            <?= ($p['estado']) ?>
+                        </td>
+
+
+                        <td>
+
+                            <a
+                                href="editar.php?id=<?= urlencode($p['id']) ?>"
+                                class="users-table--edit"
+                            >
+                                Editar
+                            </a>
+
+
+                            <a
+                                href="eliminar.php?id=<?= urlencode($p['id']) ?>"
+                                class="users-table--delete"
+                                onclick="return confirm('¿Seguro que deseas eliminar este producto?')"
+                            >
+                                Eliminar
+                            </a>
+
                         </td>
 
                     </tr>
 
-
-                <?php endif; ?>
-
+                <?php endforeach; ?>
 
             </tbody>
 
@@ -350,6 +171,10 @@ $productos = $controller->index();
     </div>
 
 
-</body>
+<?php else: ?>
 
-</html>
+    <p>
+        No hay productos registrados.
+    </p>
+
+<?php endif; ?>
