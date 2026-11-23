@@ -40,7 +40,7 @@ echo $json . "</br>";
 ///// parte 2
 echo "<h1 style=color:red;>ejercicio 2 DE JSON A PHP </h1>". "</br>";
 
-$json = file_get_contents(__DIR__ . "/productos.json",JSON_PRETTY_PRINT); 
+$json = file_get_contents(__DIR__ . "/productos.json",JSON_PRETTY_PRINT | json_unescaped_unicode); 
 $productos = json_decode($json, true); 
 foreach ($productos as $producto){
  echo "id: " . $producto["id"] . "</br>";
@@ -71,11 +71,68 @@ foreach($productos as $indice=> $producto) {
 }
 }
 
-$nuevoJson = json_encode($productos,JSON_PRETTY_PRINT);
+$nuevoJson = json_encode($productos,JSON_PRETTY_PRINT | json_unescaped_unicode);
 
 echo "<pre>";
 echo $nuevoJson;
 echo "<pre>";
 
+
+echo "<h1 style=color:red;>actividad 2 </h1>". "</br>";
+header("Content-Type: application/json; charset=utf-8");
+
+$producto = [
+    "id" => 1,
+    "nombre" => "Mouse",
+    "precio" => 35000
+];
+
+$idBuscado = 1;
+
+if ($idBuscado === $producto["id"]) {
+
+
+    http_response_code(200);
+    echo json_encode($producto);
+
+} else {
+
+   
+    http_response_code(404);
+    echo json_encode([
+        "mensaje" => "Producto no encontrado"
+    ]);
+
+}
+
+
+echo "<h1 style=color:red;>actividad 3 </h1>". "</br>";
+header("Content-Type: application/json; charset=utf-8");
+
+$producto = [
+    "id" => 3,
+    "nombre" => "Monitor",
+    "precio" => 780000,
+    "stock" => 6
+];
+
+$idBuscado = 3;
+
+if ($idBuscado === $producto["id"]) {
+
+
+    http_response_code(200);
+
+    echo json_encode($producto, JSON_PRETTY_PRINT);
+
+} else {
+
+    http_response_code(404);
+
+    echo json_encode([
+        "mensaje" => "El producto no existe"
+    ], JSON_PRETTY_PRINT);
+
+}
 
 ?>
