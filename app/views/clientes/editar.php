@@ -1,40 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Cliente</title>
-    <link rel="stylesheet" href="../../../css/style.css">
-</head>
-
-<body>
-
-    <h1 style="color: red; text-align:center;background-color:darkgray;">Editar Cliente</h1>
-
-    <div class="users-form">
-        <form action="/clientes/actualizar" method="POST" border="1" style="text-align: center;background-color:darkgray;">
-
-            <input type="hidden" name="id" value="<?= $cliente->id ?>"><br>
-
-            <label for="nombre">Nombre</label><br>
-            <input type="text" id="nombre" name="nombre" value="<?= $cliente->nombre ?>" required style="background-color: lightgoldenrodyellow;">
-            <br>
-            <label for="telefono">Teléfono</label><br>
-            <input type="text" id="telefono" name="telefono" value="<?= $cliente->telefono ?>" style="background-color: lightgoldenrodyellow;">
-            <br>
-            <label for="direccion">Dirección</label><br>
-            <input type="text" id="direccion" name="direccion" value="<?= $cliente->direccion ?>" style="background-color: lightgoldenrodyellow">
-            <br>
-            <br>
-            <section>
-            <button type="submit" style="color: red;">Guardar cambios</button><br><br>
-            <a href="/clientes">Cancelar</a>
-            </section>
-
-        </form>
-
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+        <div class="card border-secondary shadow-lg">
+            <div class="card-header py-3">
+                <h1 class="h4 mb-0 text-primary">Editar Cliente</h1>
+                <small class="text-secondary">Actualiza los datos del cliente</small>
+            </div>
+            <div class="card-body p-4">
+    <form action="/clientes/actualizar" method="POST" class="row g-3">
+        <input type="hidden" name="id" value="<?= $cliente->id ?>">
+        <div class="col-12">
+            <label class="form-label" for="nombre">Nombre</label>
+            <input class="form-control" type="text" id="nombre" name="nombre" value="<?= $cliente->nombre ?>" required>
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="telefono">Teléfono</label>
+            <input class="form-control" type="text" id="telefono" name="telefono" value="<?= $cliente->telefono ?>">
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="direccion">Dirección</label>
+            <input class="form-control" type="text" id="direccion" name="direccion" value="<?= $cliente->direccion ?>">
+        </div>
+        <div class="col-12 d-flex flex-wrap gap-2 justify-content-end pt-2">
+            <a href="/clientes" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+    </form>
+            </div>
+        </div>
     </div>
-
-</body>
-</html>
+</div>

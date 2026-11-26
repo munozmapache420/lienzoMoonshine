@@ -1,28 +1,10 @@
-<a href="/productos">productos</a>
-<br>
-<a href="/usuarios">usuarios</a>
-<br>
-<a href="/categorias">categorias</a>
-<br>
-<a href="/clientes">clientes</a>
-<br>
-<a href="/ventas">ventas</a>
-<br>
-<a href="/productos/crear">creacionProductoBB</a>
-<br>
-<a href="/categorias/crear">creacionCategoria</a>
-<br>
-<a href="/usuarios/crear">creacionUsuario</a>
-<br>
-<a href="/ventas/crear">creacionVentas</a>
-<br><br>
-
 <?php
 require_once __DIR__ . '/../app/controllers/UsuarioController.php';
 require_once __DIR__ . '/../app/controllers/productoController.php';
 require_once __DIR__ . '/../app/controllers/ventaController.php';
 require_once __DIR__ . '/../app/controllers/categoriaController.php';
 require_once __DIR__ . '/../app/controllers/clienteController.php';
+require_once __DIR__ . '/../app/controllers/homeController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];

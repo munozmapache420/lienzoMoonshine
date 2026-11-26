@@ -1,59 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div>
+        <h1 class="h2 mb-1 text-primary">Gestión de Ventas</h1>
+        <p class="text-secondary mb-0">Ventas Registradas</p>
+    </div>
+        <a href="/ventas/crear" class="btn btn-primary">＋ Nueva venta</a>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php if (!empty($ventas)): ?>
 
-    <title>Gestión de Ventas</title>
-
-    <link rel="stylesheet" href="../../../css/style.css">
-</head>
-
-<body>
-
-    <!-- MENÚ -->
-
-    <nav>
-
-        <a href="../usuarios/index.php">
-            Usuarios
-        </a>
-
-        <a href="../productos/index.php">
-            Productos
-        </a>
-
-        <a href="../categorias/index.php">
-            Categorías
-        </a>
-
-        <a href="../clientes/index.php">
-            Clientes
-        </a>
-
-        <a href="index.php">
-            <strong>Ventas</strong>
-        </a>
-
-    </nav>
-
-    <h1 style="text-align:center;color:red">Gestión de Ventas</h1>
-
-    <h2 style="background-color: lightskyblue;">Ventas Registradas</h2>
-
-    <?php if (!empty($ventas)): ?>
-
-        <p style="background-color: lightskyblue;">
-            Total de ventas:
-            <strong><?= count($ventas) ?></strong>
-        </p>
-
-        <div class="users-table">
-
-            <table border="1">
-
-                <thead>
+    <div class="card border-secondary shadow-lg">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Ventas Registradas</span>
+            <span class="badge rounded-pill text-bg-primary">Total: <?= count($ventas) ?></span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-primary">
                     <tr>
                         <th>ID</th>
                         <th>Fecha</th>
@@ -63,66 +25,32 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-
                 <tbody>
-
                     <?php foreach ($ventas as $v): ?>
-
                         <tr>
-
-                            <td>
-                                <?= $v['id'] ?>
+                            <td><?= $v['id'] ?></td>
+                            <td><?= $v['fecha'] ?></td>
+                            <td><?= $v['total'] ?></td>
+                            <td><?= $v['cliente_id'] ?></td>
+                            <td><?= $v['usuario_id'] ?></td>
+                            <td class="text-nowrap">
+                                <a href="/ventas/editar?id=<?= $v['id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <form action="/ventas/eliminar" method="post" class="d-inline" onsubmit="return confirm('¿estas seguro de eliminar este registro?')">
+                                    <input type="hidden" name="id" value="<?= $v['id'] ?>">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                </form>
                             </td>
-
-                            <td>
-                                <?= $v['fecha'] ?>
-                            </td>
-
-                            <td>
-                                <?= $v['total'] ?>
-                            </td>
-
-                            <td
-                                <?= $v['cliente_id'] ?>
-                            </td>
-
-                            <td>
-                                <?= $v['usuario_id'] ?>
-                            </td>
-
-                            <td>
-
-                                <a
-                                    href="/ventas/editar?id=<?= $v['id'] ?>"
-                                    class="users-table--edit">
-                                    Editar
-                                </a>
-
-                             <a href="">
-                            <form action="/ventas/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')"<?= $ventas["nombre"]?>>
-                            <button type="submit">eliminar</button>
-                            </a>
-
-                            </td>
-
                         </tr>
-
                     <?php endforeach; ?>
-
                 </tbody>
-
             </table>
-
         </div>
+    </div>
 
-    <?php else: ?>
+<?php else: ?>
 
-        <p>
-            No hay ventas registradas.
-        </p>
+    <div class="alert alert-secondary text-center" role="alert">
+        No hay ventas registradas.
+    </div>
 
-    <?php endif; ?>
-
-</body>
-
-</html>
+<?php endif; ?>

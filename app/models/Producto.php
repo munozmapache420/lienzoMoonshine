@@ -20,6 +20,7 @@ class Producto
     }
 
 
+
     public function guardar($nombre, $descripcion, $categoria_id, $id_inventario, $precio_compra, $precio_venta, $stock, $stock_minimo, $estado)
     {
         try {
@@ -56,6 +57,50 @@ class Producto
             return $consulta->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "Error al buscar el PRODUCTO con ID: " . $e->getMessage();
+        }
+    }
+
+    private $colImagen = null;
+
+    /**
+     * Devuelve el nombre real de la columna de imagen de la tabla producto
+     * (imagen, imagen_url, img_url, foto...) o false si no existe.
+     */
+    public function columnaImagen()
+    {
+        if ($this->colImagen !== null) {
+            return $this->colImagen;
+        }
+
+        $cols = $this->conn->query("SHOW COLUMNS FROM producto")->fetchAll(PDO::FETCH_COLUMN);
+
+        foreach (['imagen', 'imagen_url', 'img_url', 'url_imagen', 'imagen_producto', 'foto', 'url'] as $c) {
+            if (in_array($c, $cols, true)) {
+                return $this->colImagen = $c;
+            }
+        }
+        foreach ($cols as $c) {
+            if (preg_match('/imagen|img|foto/i', $c)) {
+                return $this->colImagen = $c;
+            }
+        }
+        return $this->colImagen = false;
+    }
+
+    public function actualizarImagen($id, $url)
+    {
+        $col = $this->columnaImagen();
+        if (!$col) {
+            throw new Exception("La tabla producto no tiene columna de imagen. Ejecuta en phpMyAdmin: ALTER TABLE producto ADD COLUMN imagen VARCHAR(500) NULL;");
+        }
+
+        try {
+            $sql = "UPDATE producto SET `$col` = :imagen WHERE id = :id";
+            $consulta = $this->conn->prepare($sql);
+            $consulta->execute([':imagen' => $url, ':id' => $id]);
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Error SQL al guardar la imagen en la columna `$col`: " . $e->getMessage());
         }
     }
 

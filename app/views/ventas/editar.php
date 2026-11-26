@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Venta</title>
-    <link rel="stylesheet" href="../../../css/style.css">
-</head>
-
-<body>
-
-    <h1 style="color: red; text-align:center; background-color:darkgray;">Editar Venta</h1>
-
-    <div class="users-form">
-        <form action="/ventas/actualizar" method="POST" style="text-align:center;background-color:darkgray">
-
-            <input type="hidden" name="id" value="<?= $venta->id ?>">
-
-            <label for="fecha">Fecha</label><br>
-            <input type="date" id="fecha" name="fecha" value="<?= $venta->fecha ?>" required style="background-color: lightgoldenrodyellow;"><br>
-
-            <label for="total">Total</label><br>
-            <input type="number" id="total" name="total" value="<?= $venta->total ?>" required style="background-color: lightgoldenrodyellow;"><br>
-
-            <label for="cliente_id">ID del Cliente</label><br>
-            <input type="number" id="cliente_id" name="cliente_id" value="<?= $venta->cliente_id ?>" required style="background-color: lightgoldenrodyellow;"><br>
-
-            <label for="usuario_id">ID del Usuario</label><br>
-            <input type="number" id="usuario_id" name="usuario_id" value="<?= $venta->usuario_id ?>" required style="background-color: lightgoldenrodyellow;"><br><br>
-
-
-            <section>
-                <button type="submit" style="color: red;">Guardar cambios</button>
-                <br><br>
-                <a href="/ventas">Cancelar</a>
-            </section>
-
-
-        </form>
-
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+        <div class="card border-secondary shadow-lg">
+            <div class="card-header py-3">
+                <h1 class="h4 mb-0 text-primary">Editar Venta</h1>
+                <small class="text-secondary">Actualiza los datos de la venta</small>
+            </div>
+            <div class="card-body p-4">
+    <form action="/ventas/actualizar" method="POST" class="row g-3">
+        <input type="hidden" name="id" value="<?= $venta->id ?>">
+        <div class="col-md-6">
+            <label class="form-label" for="fecha">Fecha</label>
+            <input class="form-control" type="date" id="fecha" name="fecha" value="<?= $venta->fecha ?>" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="total">Total</label>
+            <input class="form-control" type="number" id="total" name="total" value="<?= $venta->total ?>" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="cliente_id">ID del Cliente</label>
+            <input class="form-control" type="number" id="cliente_id" name="cliente_id" value="<?= $venta->cliente_id ?>" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="usuario_id">ID del Usuario</label>
+            <input class="form-control" type="number" id="usuario_id" name="usuario_id" value="<?= $venta->usuario_id ?>" required>
+        </div>
+        <div class="col-12 d-flex flex-wrap gap-2 justify-content-end pt-2">
+            <a href="/ventas" class="btn btn-outline-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+    </form>
+            </div>
+        </div>
     </div>
-
-</body>
-
-</html>
+</div>

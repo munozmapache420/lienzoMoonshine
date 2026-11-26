@@ -19,3 +19,7 @@ se crea formularios de edicion o actualizacionde datos mediante la vida editar e
 
 ### actualizacion de el dia 23/11/2026
 tabajamos es la estructura js y la conexion con php pasammos de php a json y de json a php
+
+## 26/11/2026
+### subida de home y controller, se divide el index a un home en views
+el dia 26 apartamos los html y los php del index principal se creo otra rama de home 5:33 pm 

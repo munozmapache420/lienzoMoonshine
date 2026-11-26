@@ -1,0 +1,51 @@
+/* MOONSHINE — color de marca: índigo #1F0036 (sobre las clases primary de Bootstrap) */
+:root {
+    --bs-primary: #1F0036;
+    --bs-primary-rgb: 31, 0, 54;
+    --bs-link-color: #1F0036;
+    --bs-link-hover-color: #4a0a7a;
+    --bs-primary-bg-subtle: #ece2f6;
+    --bs-primary-border-subtle: #c9a9e6;
+    --bs-primary-text-emphasis: #1F0036;
+}
+
+html {
+    background: linear-gradient(160deg, #f4effa 0%, #ffffff 55%, #ece2f6 100%);
+    background-attachment: fixed;
+    min-height: 100%;
+}
+body { background: transparent; }
+
+.btn-primary {
+    --bs-btn-bg: #1F0036;
+    --bs-btn-border-color: #1F0036;
+    --bs-btn-hover-bg: #350059;
+    --bs-btn-hover-border-color: #350059;
+    --bs-btn-active-bg: #150026;
+    --bs-btn-active-border-color: #150026;
+    --bs-btn-disabled-bg: #1F0036;
+    --bs-btn-disabled-border-color: #1F0036;
+}
+.btn-outline-primary {
+    --bs-btn-color: #1F0036;
+    --bs-btn-border-color: #1F0036;
+    --bs-btn-hover-bg: #1F0036;
+    --bs-btn-hover-border-color: #1F0036;
+    --bs-btn-active-bg: #1F0036;
+    --bs-btn-active-border-color: #1F0036;
+}
+.table-primary {
+    --bs-table-bg: #1F0036;
+    --bs-table-color: #ffffff;
+    --bs-table-border-color: #3a0a5c;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #1F0036;
+    box-shadow: 0 0 0 .2rem rgba(31, 0, 54, .2);
+}
+.table-hover > tbody > tr:hover > * { --bs-table-hover-bg: rgba(31, 0, 54, .06); }
+img {
+height: 200px;
+width: 200px;
+margin: 5px;
+}

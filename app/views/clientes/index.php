@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Clientes</title>
-    <link rel="stylesheet" href="../../../css/style.css">
-</head>
-<body>
+<div class="mb-4">
+    <h1 class="h2 mb-1 text-primary">Gestión de Clientes</h1>
+    <p class="text-secondary mb-0">Clientes Registrados</p>
+</div>
 
-    <nav>
-        <a href="../../../public/index.php">Usuarios</a>
-        <a href="../productos/index.php">Productos</a>
-        <a href="../categorias/index.php">Categorías</a>
-        <a href="index.php"><strong>Clientes</strong></a>
-        <a href="../ventas/index.php">Ventas</a>
-    </nav>
-
-    <h1 style="text-align: center;color:red">Gestión de Clientes</h1>
-
-    <div class="users-form">
-        <form action="crear.php" method="POST">
-            <h2>Registrar Cliente</h2>
-            <input type="text" name="nombre" placeholder="Nombre completo" required>
-            <input type="text" name="telefono" placeholder="Teléfono">
-            <input type="text" name="direccion" placeholder="Dirección">
-            <input type="submit" value="Agregar Cliente">
-        </form>
+<div class="row justify-content-center mb-4">
+    <div class="col-12 col-lg-8">
+        <div class="card border-secondary shadow-lg">
+            <div class="card-header py-3"><h2 class="h5 mb-0 text-primary">Registrar Cliente</h2></div>
+            <div class="card-body p-4">
+                <form action="crear.php" method="POST" class="row g-3">
+                    <div class="col-md-4"><input class="form-control" type="text" name="nombre" placeholder="Nombre completo" required></div>
+                    <div class="col-md-3"><input class="form-control" type="text" name="telefono" placeholder="Teléfono"></div>
+                    <div class="col-md-3"><input class="form-control" type="text" name="direccion" placeholder="Dirección"></div>
+                    <div class="col-md-2 d-grid"><input class="btn btn-primary" type="submit" value="Agregar Cliente"></div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <h2 style="background-color: lightskyblue;">Clientes Registrados</h2>
-
-    <div class="users-table">
-        <table border="2">
-            <thead>
+<div class="card border-secondary shadow-lg">
+    <div class="card-header fw-semibold">Clientes Registrados</div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-primary">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -47,22 +38,20 @@
                     <?php foreach ($clientes as $c): ?>
                         <tr>
                             <td><?= $c['id'] ?></td>
-                            <td><?= ($c['nombre']) ?></td>
+                            <td class="fw-semibold"><?= ($c['nombre']) ?></td>
                             <td><?= ($c['telefono'] ?? '') ?></td>
                             <td><?= ($c['direccion'] ?? '') ?></td>
                             <td><?= ($c['registro_unico']) ?></td>
-                            <td>
-                                <a href="/clientes/editar?id=<?= $c['id'] ?>" class="users-table--edit">Editar</a>
-                                <a href="eliminar.php?id=<?= $c['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este cliente?')">Eliminar</a>
+                            <td class="text-nowrap">
+                                <a href="/clientes/editar?id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <a href="eliminar.php?id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Seguro que deseas eliminar este cliente?')">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr><td colspan="6">No hay clientes registrados.</td></tr>
+                    <tr><td colspan="6" class="text-center text-secondary py-4">No hay clientes registrados.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
     </div>
-
-</body>
-</html>
+</div>

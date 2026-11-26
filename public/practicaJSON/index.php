@@ -40,7 +40,7 @@ echo $json . "</br>";
 ///// parte 2
 echo "<h1 style=color:red;>ejercicio 2 DE JSON A PHP </h1>". "</br>";
 
-$json = file_get_contents(__DIR__ . "/productos.json",JSON_PRETTY_PRINT | json_unescaped_unicode); 
+$json = file_get_contents(__DIR__ . "/productos.json",JSON_PRETTY_PRINT); 
 $productos = json_decode($json, true); 
 foreach ($productos as $producto){
  echo "id: " . $producto["id"] . "</br>";
@@ -71,7 +71,7 @@ foreach($productos as $indice=> $producto) {
 }
 }
 
-$nuevoJson = json_encode($productos,JSON_PRETTY_PRINT | json_unescaped_unicode);
+$nuevoJson = json_encode($productos,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
 echo "<pre>";
 echo $nuevoJson;
@@ -136,3 +136,4 @@ if ($idBuscado === $producto["id"]) {
 }
 
 ?>
+
